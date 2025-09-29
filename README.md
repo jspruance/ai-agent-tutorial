@@ -19,7 +19,7 @@ In the tutorial, we’ll add the code that turns this into a working **AI Agent*
 Clone this repo:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/openai-agent-tutorial-starter.git
+git clone https://github.com/jspruance/ai-agent-tutorial.git
 cd openai-agent-tutorial-starter
 ```
 
