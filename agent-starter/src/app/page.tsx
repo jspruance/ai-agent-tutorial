@@ -9,7 +9,6 @@ export default function Home() {
 
   // Starter behavior → no API call yet
   const askAgent = async () => {
-<<<<<<< HEAD
     setAnswer("");
     try {
       const res = await fetch("/api/agent", {
@@ -23,11 +22,6 @@ export default function Home() {
       console.error(err);
       setAnswer("❌ Something went wrong");
     }
-=======
-    setLoading(true);
-    setAnswer("Agent not connected yet");
-    setTimeout(() => setLoading(false), 800); // simulate thinking
->>>>>>> bdce756d1975f282706930634afce76525e817ef
   };
 
   return (
