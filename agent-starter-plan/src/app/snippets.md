@@ -2,6 +2,33 @@
 
 ```ts
 // 🔹 Tools
+// Calculator tool
+{
+  type: "function",
+  function: {
+    name: "calculator",
+    description: "Evaluate basic math expressions",
+    parameters: {
+      type: "object",
+      properties: {
+        expression: { type: "string" },
+      },
+      required: ["expression"],
+    },
+  },
+}
+
+// Calculator tool implementation
+if (name === "calculator") {
+  try {
+    // ⚠️ demo only — eval is unsafe in production
+    // eslint-disable-next-line no-eval
+    return eval(args.expression);
+  } catch {
+    return "Error evaluating expression";
+  }
+}
+
 
 // Weather Tool Definition
 {
@@ -57,6 +84,8 @@ const first = await client.chat.completions.create({
 });
 
 const msg = first.choices[0].message;
+// optional logging
+console.log("Tool calls:", msg.tool_calls);
 
 // 2) If GPT decides to call a tool
 if (msg.tool_calls?.length) {
@@ -91,9 +120,9 @@ if (msg.tool_calls?.length) {
 return NextResponse.json({ answer: msg.content });
 
 // 🔹 Frontend Fetch Logic (replace placeholder in page.tsx)
-
 const askAgent = async () => {
   setAnswer("");
+  setLoading(true);
   try {
     const res = await fetch("/api/agent", {
       method: "POST",
@@ -105,8 +134,11 @@ const askAgent = async () => {
   } catch (err) {
     console.error(err);
     setAnswer("❌ Something went wrong");
+  } finally {
+    setLoading(false);
   }
 };
+
 
 // 🔹 Input + Button (UI in page.tsx)
 
